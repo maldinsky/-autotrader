@@ -1,0 +1,32 @@
+version: "3.1"
+services:
+    mysql:
+      image: mysql:8.0
+      container_name: autotrader-mysql
+      working_dir: /app
+      volumes:
+        - ./app:/app
+      environment:
+        - MYSQL_ROOT_PASSWORD=autotrader
+        - MYSQL_DATABASE=autotrader
+        - MYSQL_USER=autotrader
+        - MYSQL_PASSWORD=autotrader
+      ports:
+        - "5254:3306"
+    webserver:
+      image: nginx:alpine
+      container_name: autotrader-webserver
+      working_dir: /app
+      volumes:
+          - ./app:/app
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "5252:80"
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: autotrader-php-fpm
+      working_dir: /app
+      volumes:
+        - ./app:/app        
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+        
