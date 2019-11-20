@@ -4,6 +4,7 @@ services:
       image: mysql:8.0
       container_name: autotrader-mysql
       working_dir: /app
+      command: --default-authentication-plugin=mysql_native_password
       volumes:
         - ./app:/app
       environment:
