@@ -15,6 +15,19 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+Route::group(['prefix' => 'me', 'as' => 'account.', 'namespace' => 'Account', 'middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::group(['prefix' => 'adverts', 'as' => 'adverts.', 'namespace' => 'Adverts'], function () {
+        Route::get('/', 'AdvertController@index')->name('home');
+    });
+});
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['admin']], function () {
-    Route::get('/', 'HomeController@index')->name('admin.home');
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::group(['prefix' => 'adverts', 'as' => 'adverts.', 'namespace' => 'Adverts'], function () {
+        Route::get('/', 'AdvertController@index')->name('home');
+    });
 });

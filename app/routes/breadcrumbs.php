@@ -16,3 +16,8 @@ Breadcrumbs::for('register', function ($trail) {
     $trail->parent('home');
     $trail->push('Регистрация', route('register'));
 });
+
+Breadcrumbs::for('account.home', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Аккаунт', route('account.home'));
+});
