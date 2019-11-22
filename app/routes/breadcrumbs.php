@@ -21,3 +21,8 @@ Breadcrumbs::for('account.home', function ($trail) {
     $trail->parent('home');
     $trail->push('Аккаунт', route('account.home'));
 });
+
+Breadcrumbs::for('account.adverts.home', function ($trail) {
+    $trail->parent('account.home');
+    $trail->push('Создание', route('account.adverts.home'));
+});

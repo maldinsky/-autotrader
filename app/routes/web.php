@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/getModelsByBrand', 'ModelAutoController@getModelsByBrand')->name('getModelsByBrand');
 
 Auth::routes();
 
