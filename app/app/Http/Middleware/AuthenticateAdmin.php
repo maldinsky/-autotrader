@@ -10,7 +10,7 @@ class AuthenticateAdmin extends Authenticate
 {
     public function handle($request, Closure $next, ...$guards)
     {
-        if(Auth::check() && Auth::user()->isAdmin() == true){
+        if(Auth::check() && Auth::user()->isAdmin()){
             return $next($request);
         }
 

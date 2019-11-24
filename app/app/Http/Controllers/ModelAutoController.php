@@ -9,7 +9,7 @@ class ModelAutoController extends Controller
 {
     public function getModelsByBrand(Request $request)
     {
-        $autoModels = AutoModel::all()->where('auto_brand_id', '=', $request->get('brand_id'));
+        $autoModels = AutoModel::where('auto_brand_id', $request->get('brand_id'))->get();
 
         return $autoModels;
     }

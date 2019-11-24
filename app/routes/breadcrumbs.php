@@ -17,12 +17,22 @@ Breadcrumbs::for('register', function ($trail) {
     $trail->push('Регистрация', route('register'));
 });
 
-Breadcrumbs::for('account.home', function ($trail) {
+Breadcrumbs::for('account', function ($trail) {
     $trail->parent('home');
     $trail->push('Аккаунт', route('account.home'));
 });
 
-Breadcrumbs::for('account.adverts.home', function ($trail) {
-    $trail->parent('account.home');
-    $trail->push('Создание', route('account.adverts.home'));
+Breadcrumbs::for('account.adverts', function ($trail) {
+    $trail->parent('account');
+    $trail->push('Объявления', route('account.home'));
+});
+
+Breadcrumbs::for('account.adverts.index', function ($trail) {
+    $trail->parent('account.adverts');
+    $trail->push('Объявления', route('account.adverts.index'));
+});
+
+Breadcrumbs::for('account.adverts.create', function ($trail) {
+    $trail->parent('account.adverts');
+    $trail->push('Создание объявления', route('account.adverts.create'));
 });
