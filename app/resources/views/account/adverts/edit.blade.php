@@ -3,6 +3,15 @@
 @section('content')
     <div class="container">
         <h1>Новое объявление</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div><br />
+        @endif
         <form action="{{ route('account.adverts.store') }}" method="POST">
             @csrf
             <div class="form-group row">
@@ -10,7 +19,7 @@
                 <div class="col-sm-6">
                     <select name="type" class="custom-select" required>
                         @foreach ($autoTypes as $autoType)
-                            <option value="{{ $autoType->id }}" {{ old('type') == $autoType->id ? 'selected' : '' }}>{{ $autoType->name }}</option>
+                            <option value="{{ $autoType->id }}" {{ (old('type') ?? $advert->type ?? '') == $autoType->id ? 'selected' : '' }}>{{ $autoType->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -20,7 +29,7 @@
                 <div class="col-sm-6">
                     <select name="brand_id" class="custom-select" required>
                         @foreach ($autoBrands as $autoBrand)
-                            <option value="{{ $autoBrand->id }}" {{ old('brand_id') == $autoBrand->id ? 'selected' : '' }}>{{ $autoBrand->name }}</option>
+                            <option value="{{ $autoBrand->id }}" {{ (old('brand_id') ?? $advert->brand_id ?? '') == $autoBrand->id ? 'selected' : '' }}>{{ $autoBrand->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -36,7 +45,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Год выпуска</label>
                 <div class="col-sm-6">
-                    <input name="year" type="text" class="form-control" placeholder="Введите год выпуска">
+                    <input name="year" type="text" class="form-control" placeholder="Введите год выпуска" value="{{ old('year') ?? $advert->year ?? '' }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -50,7 +59,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Модификация</label>
                 <div class="col-sm-6">
-                    <input name="modification" type="text" class="form-control" placeholder="Модификация автомобиля">
+                    <input name="modification" type="text" class="form-control" placeholder="Модификация автомобиля" value="{{ old('modification') ?? $advert->modification ?? '' }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -65,7 +74,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Цена</label>
                 <div class="col-sm-4">
-                    <input name="price" class="form-control" type="text" placeholder="Цена автомобиля">
+                    <input name="price" class="form-control" type="text" placeholder="Цена автомобиля" value="{{ old('price') ?? $advert->price ?? '' }}">
                 </div>
                 <div class="col-sm-2">
                     <select name="currency_id" class="custom-select" required>
@@ -76,7 +85,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Текст объявления</label>
                 <div class="col-sm-6">
-                    <textarea name="description" class="form-control" rows="5"></textarea>
+                    <textarea name="description" class="form-control" rows="5">{{ old('description') ?? $advert->description ?? '' }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -98,7 +107,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Пробег</label>
                 <div class="col-sm-6">
-                    <input name="mileage" type="text" class="form-control" placeholder="Пробег автомобиля">
+                    <input name="mileage" type="text" class="form-control" placeholder="Пробег автомобиля" value="{{ old('mileage') ?? $advert->mileage ?? '' }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -120,7 +129,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">VIN</label>
                 <div class="col-sm-6">
-                    <input name="vin" type="text" class="form-control" placeholder="Vin-код автомобиля">
+                    <input name="vin" type="text" class="form-control" placeholder="Vin-код автомобиля" value="{{ old('vin') ?? $advert->vin ?? '' }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -174,13 +183,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Ваше имя</label>
                 <div class="col-sm-6">
-                    <input name="name" type="text" class="form-control" placeholder="Ваше имя">
+                    <input name="name" type="text" class="form-control" placeholder="Ваше имя" value="{{ old('name') ?? $advert->name ?? '' }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Контакный телефон</label>
                 <div class="col-sm-6">
-                    <input name="phone" type="text" class="form-control" placeholder="Контакный телефон">
+                    <input name="phone" type="text" class="form-control" placeholder="Контакный телефон" value="{{ old('phone') ?? $advert->phone ?? '' }}">
                 </div>
             </div>
             <div>
