@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ModelAutoController extends Controller
 {
-    public function getModelsByBrand(Request $request)
+    public function handle(Request $request)
     {
         $autoModels = AutoModel::where('auto_brand_id', $request->get('brand_id'))->get();
 
