@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account\Adverts;
 
 use App\Entity\Advert;
+use App\Entity\AutoAttributeGroup;
 use App\Entity\AutoBody;
 use App\Entity\AutoBrand;
 use App\Entity\AutoColor;
@@ -39,6 +40,7 @@ class AdvertController extends Controller
         $interiorMaterials = AutoInteriorMaterial::all();
         $exchanges = Advert::EXCHANGE;
         $regions = Region::all();
+        $attributeGroups = AutoAttributeGroup::all();
 
         return view('account.adverts.create', compact(
             'autoBrands',
@@ -53,7 +55,8 @@ class AdvertController extends Controller
             'interiorColors',
             'interiorMaterials',
             'exchanges',
-            'regions'
+            'regions',
+            'attributeGroups'
         ));
     }
 

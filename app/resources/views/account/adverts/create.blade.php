@@ -212,6 +212,23 @@
                     <input name="phone" type="text" class="form-control" placeholder="Контакный телефон" value="{{ old('phone') }}" required>
                 </div>
             </div>
+            <div class="my-5">
+                <h3>Дополнительные параметры</h3>
+                <div class="row">
+                    @foreach($attributeGroups as $attributeGroup)
+                        <div class="col-sm-4">
+                            <h5>{{ $attributeGroup->name }}</h5>
+                            <div>
+                                @foreach($attributeGroup->autoAttributes as $attribute)
+                                    <p>
+                                        <input type="checkbox" name="attribute_id" value="{{ $attribute->id }}"> {{ $attribute->name }}
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <div>
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </div>

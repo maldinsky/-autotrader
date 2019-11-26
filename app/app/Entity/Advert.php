@@ -52,4 +52,9 @@ class Advert extends Model
     {
         return $this->belongsTo('App\Entity\AutoType', 'type');
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany('App\Entity\AutoAttribute', 'auto_advert_attribute', 'advert_id', 'attribute_id');
+    }
 }
