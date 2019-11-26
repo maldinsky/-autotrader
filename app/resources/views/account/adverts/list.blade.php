@@ -14,10 +14,14 @@
                     @foreach($adverts as $advert)
                         <div>
                             <p>Объявление # {{ $advert->id }}</p>
-                            {{ $advert->year }}
+                            <p>{{ $advert->year }}</p>
+                            <p>{{ $advert->mileage }}</p>
+                            <p>{{ $advert->user->name }}</p>
+                            <p>{{ $advert->autoType->name }}</p>
                             <a href="{{ route('account.adverts.edit', $advert) }}">Изменить</a>
                             <a href="{{ route('account.adverts.show', $advert) }}">Посмотреть</a>
                             <a href="{{ route('account.adverts.destroy', $advert) }}">Удалить</a>
+                            <hr>
                         </div>
                     @endforeach
                 </div>

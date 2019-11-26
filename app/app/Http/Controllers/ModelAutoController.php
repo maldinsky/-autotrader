@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Entity\AutoModel;
-use Illuminate\Http\Request;
+use App\Entity\AutoBrand;
+use App\Http\Requests\ModelAutoRequest;
 
 class ModelAutoController extends Controller
 {
-    public function handle(Request $request)
+    public function handle(ModelAutoRequest $request)
     {
-        $autoModels = AutoModel::where('auto_brand_id', $request->get('brand_id'))->get();
+        $autoBrand = AutoBrand::find($request->get('brand_id'));
 
-        return $autoModels;
+        return $autoBrand->models;
     }
 }

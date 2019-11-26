@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advert extends Model
 {
+    protected $guarded = [
+        '_method',
+        '_token'
+    ];
+
     public const CONDITION_ID = [
         0 => 'С пробегом',
         1 => 'С повреждениями',
@@ -41,5 +46,10 @@ class Advert extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function autoType()
+    {
+        return $this->belongsTo('App\Entity\AutoType', 'type');
     }
 }

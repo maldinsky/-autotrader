@@ -2,6 +2,7 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/getModelsByBrand', 'ModelAutoController@handle')->name('getModelsByBrand');
+Route::get('/getCitiesByRegion', 'CityController@handle')->name('getCitiesByRegion');
 
 Auth::routes();
 
