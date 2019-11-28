@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Новое объявление</h1>
+        <h1 class="account-title">Новое объявление</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -38,6 +38,11 @@
                 <label class="col-sm-2 col-form-label">Модель</label>
                 <div class="col-sm-6">
                     <select name="model_id" class="custom-select" required></select>
+                </div>
+                <div class="col-sm-4">
+                    <small class="text-muted">
+                        Нет нужной марки или модели? Обратитесь в техподдержку и мы оперативно ее добавим
+                    </small>
                 </div>
             </div>
             <div class="form-group row">
@@ -91,6 +96,11 @@
                 <div class="col-sm-6">
                     <textarea name="description" class="form-control" rows="5" required>{{ old('description') }}</textarea>
                 </div>
+                <div class="col-sm-4">
+                    <small class="text-muted">
+                        Запрещается давать ссылки, указывать адреса эл. почты, адрес места осмотра, телефоны, цену, предлагать услуги.
+                    </small>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Тип двигателя</label>
@@ -100,13 +110,13 @@
                             <option value="{{ $engine_id  }}" {{ old('engine_type') == $engine_id ? 'selected' : '' }}>{{ $engine_name }}</option>
                         @endforeach
                     </select>
-                    <div class="form-check">
-                        <input name="engine_hybrid" type="checkbox" class="form-check-input" value="1" {{ old('engine_hybrid') ? 'checked' : '' }}>
-                        <label class="form-check-label">Гибридный</label>
+                    <div class="custom-control custom-checkbox">
+                        <input name="engine_hybrid" type="checkbox" id="checkbox-engine-hybrid" class="custom-control-input" value="1" {{ old('engine_hybrid') ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="checkbox-engine-hybrid">Гибридный</label>
                     </div>
-                    <div class="form-check">
-                        <input name="engine_gas" type="checkbox" class="form-check-input" value="1" {{ old('engine_gas') ? 'checked' : '' }}>
-                        <label class="form-check-label">Газовое оборудование</label>
+                    <div class="custom-control custom-checkbox">
+                        <input name="engine_gas" type="checkbox" id="checkbox-engine-gas" class="custom-control-input" value="1" {{ old('engine_gas') ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="checkbox-engine-gas">Газовое оборудование</label>
                     </div>
                 </div>
             </div>
@@ -140,6 +150,11 @@
                 <label class="col-sm-2 col-form-label">VIN</label>
                 <div class="col-sm-6">
                     <input name="vin" type="text" class="form-control" placeholder="Vin-код автомобиля" value="{{ old('vin') }}" required>
+                </div>
+                <div class="col-sm-4">
+                    <small class="text-muted">
+                        Мы просим покупателей cверять VIN и госномер при осмотре, указывайте их верно.
+                    </small>
                 </div>
             </div>
             <div class="form-group row">
@@ -195,15 +210,18 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Город</label>
                 <div class="col-sm-6">
-                    <select name="city_id" class="custom-select" required>
-                        <option value="1" selected>1</option>
-                    </select>
+                    <select name="city_id" class="custom-select" required></select>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Ваше имя</label>
                 <div class="col-sm-6">
                     <input name="name" type="text" class="form-control" placeholder="Ваше имя" value="{{ old('name') }}" required>
+                </div>
+                <div class="col-sm-4">
+                    <small class="text-muted">
+                        Имя будет указано в объявлении
+                    </small>
                 </div>
             </div>
             <div class="form-group row">
@@ -230,8 +248,8 @@
                     @endforeach
                 </div>
             </div>
-            <div>
-                <div id="advert-load-image" class="dropzone"></div>
+            <div class="my-3">
+                <div id="advert-load-image" class="dropzone block-load-image"></div>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Отправить</button>
