@@ -62,7 +62,17 @@ class AdvertController extends Controller
 
     public function store(CreateRequest $request)
     {
-        Auth::getUser()->adverts()->create($request->toArray());
+        $advert = Auth::getUser()->adverts()->create($request->except(['attribute_id', 'advert_images']));
+
+        if(!empty($request->attribute_id)){
+            $advert->attributes()->sync($request->attribute_id);
+        }
+
+        if(!empty($request->advert_images)){
+            foreach($request->advert_images as $advert_image){
+                $advert->images()->create(['image' => $advert_image]);
+            }
+        }
     }
 
     public function show($id)

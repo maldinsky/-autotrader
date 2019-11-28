@@ -57,4 +57,9 @@ class Advert extends Model
     {
         return $this->belongsToMany('App\Entity\AutoAttribute', 'auto_advert_attribute', 'advert_id', 'attribute_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(AdvertImage::class);
+    }
 }

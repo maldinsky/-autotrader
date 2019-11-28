@@ -12,7 +12,7 @@
                 </ul>
             </div><br />
         @endif
-        <form action="{{ route('account.adverts.store') }}" method="POST">
+        <form action="{{ route('account.adverts.store') }}" method="POST" >
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Тип автомобиля</label>
@@ -37,8 +37,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Модель</label>
                 <div class="col-sm-6">
-                    <select name="model_id" class="custom-select" required>
-                    </select>
+                    <select name="model_id" class="custom-select" required></select>
                 </div>
             </div>
             <div class="form-group row">
@@ -67,9 +66,9 @@
                 <label class="col-sm-2 col-form-label">Состояние</label>
                 <div class="col-sm-10">
                     @foreach($conditions as $condition_id => $condition_name)
-                        <div class="form-check form-check-inline">
-                            <input name="condition_id" class="form-check-input" type="radio" value="{{ $condition_id }}" {{ old('condition_id') == $condition_id ? 'checked' : '' }} required>
-                            <label class="form-check-label">{{ $condition_name }}</label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input name="condition_id" type="radio" id="condition-id-{{ $condition_id }}" class="custom-control-input" value="{{ $condition_id }}" {{ old('condition_id') == $condition_id ? 'checked' : '' }} required >
+                            <label class="custom-control-label" for="condition-id-{{ $condition_id }}">{{ $condition_name }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -197,6 +196,7 @@
                 <label class="col-sm-2 col-form-label">Город</label>
                 <div class="col-sm-6">
                     <select name="city_id" class="custom-select" required>
+                        <option value="1" selected>1</option>
                     </select>
                 </div>
             </div>
@@ -220,14 +220,18 @@
                             <h5>{{ $attributeGroup->name }}</h5>
                             <div>
                                 @foreach($attributeGroup->autoAttributes as $attribute)
-                                    <p>
-                                        <input type="checkbox" name="attribute_id" value="{{ $attribute->id }}"> {{ $attribute->name }}
-                                    </p>
+                                    <div class="custom-control custom-checkbox">
+                                        <input name="attribute_id[]" type="checkbox" class="custom-control-input" id="attribute-id-{{ $attribute->id }}" {{ is_array(old('attribute_id')) && in_array($attribute->id, old('attribute_id')) ? 'checked' : '' }} value="{{ $attribute->id }}">
+                                        <label class="custom-control-label" for="attribute-id-{{ $attribute->id }}">{{ $attribute->name }}</label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
                 </div>
+            </div>
+            <div>
+                <div id="advert-load-image" class="dropzone"></div>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Отправить</button>

@@ -36,6 +36,8 @@ class CreateRequest extends FormRequest
             'city_id' => 'required|integer',
             'name' => 'required|string|max:64',
             'phone' => 'required|string|max:25',
+            'attribute_id.*' => 'numeric',
+            'advert_images.*' => 'required|string'
         ];
     }
 }
