@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
             'mileage' => 'required|integer',
             'transmission_id' => 'required|integer',
             'driving_id' => 'required|integer',
-            'vin' => 'required|string|unique|max:17',
+            'vin' => 'required|string|unique:adverts|max:17',
             'color_id' => 'required|integer',
             'interior_material_id' => 'required|integer',
             'interior_color_id' => 'required|integer',

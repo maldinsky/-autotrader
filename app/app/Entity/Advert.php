@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advert extends Model
 {
-    protected $guarded = [
-        '_method',
-        '_token'
+    protected $fillable = [
+        'type', 'brand_id', 'model_id', 'year', 'body_id', 'modification', 'condition_id', 'price', 'currency_id',
+        'description', 'engine_type', 'engine_gas', 'engine_hybrid', 'mileage', 'transmission_id', 'driving_id', 'vin',
+        'color_id', 'interior_material_id', 'interior_color_id', 'exchange', 'region_id', 'city_id', 'name', 'phone'
     ];
 
     public const CONDITION_ID = [
@@ -53,6 +54,21 @@ class Advert extends Model
         return $this->belongsTo('App\Entity\AutoType', 'type');
     }
 
+    public function autoBrand()
+    {
+        return $this->belongsTo(AutoBrand::class, 'brand_id');
+    }
+
+    public function autoModel()
+    {
+        return $this->belongsTo(AutoModel::class, 'model_id');
+    }
+
+    public function autoBody()
+    {
+        return $this->belongsTo(AutoBody::class, 'body_id');
+    }
+
     public function attributes()
     {
         return $this->belongsToMany('App\Entity\AutoAttribute', 'auto_advert_attribute', 'advert_id', 'attribute_id');
@@ -61,5 +77,10 @@ class Advert extends Model
     public function images()
     {
         return $this->hasMany(AdvertImage::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
     }
 }

@@ -66,6 +66,11 @@
                 <div class="col-sm-6">
                     <input name="modification" type="text" class="form-control" placeholder="Модификация автомобиля" value="{{ old('modification') }}">
                 </div>
+                <div class="col-sm-4">
+                    <small class="text-muted">
+                        Cпециальная серия определенной модели
+                    </small>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Состояние</label>
@@ -249,7 +254,7 @@
                 </div>
             </div>
             <div class="my-3">
-                <div id="advert-load-image" class="dropzone block-load-image"></div>
+                <input id="advert-load-image" type="file" name="advert_image">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Отправить</button>

@@ -32,6 +32,11 @@ Breadcrumbs::for('account.adverts.index', function ($trail) {
     $trail->push('Ваши объявления', route('account.adverts.index'));
 });
 
+Breadcrumbs::for('account.adverts.show', function ($trail, $advert) {
+    $trail->parent('account.adverts.index');
+    $trail->push('Редактирование объявления', route('account.adverts.show', $advert));
+});
+
 Breadcrumbs::for('account.adverts.create', function ($trail) {
     $trail->parent('account.adverts.index');
     $trail->push('Создание объявления', route('account.adverts.create'));

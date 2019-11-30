@@ -10,19 +10,47 @@
                 @include('layouts.partials.account._menu')
             </div>
             <div class="col-md-9">
-                <div>
+                <div class="adverts-list">
                     @foreach($adverts as $advert)
-                        <div>
-                            <p>Объявление # {{ $advert->id }}</p>
-                            <p>{{ $advert->year }}</p>
-                            <p>{{ $advert->mileage }}</p>
-                            <p>{{ $advert->user->name }}</p>
-                            <p>{{ $advert->autoType->name }}</p>
-                            <a href="{{ route('account.adverts.edit', $advert) }}">Изменить</a>
-                            <a href="{{ route('account.adverts.show', $advert) }}">Посмотреть</a>
-                            <a href="{{ route('account.adverts.destroy', $advert) }}">Удалить</a>
-                            <hr>
+                        <div class="adverts-list-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @if(!empty($advert->images[0]))
+                                        <img class="img-fluid" src="{{ Storage::url($advert->images[0]->image) }}" alt="">
+                                    @endif
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="adverts-list-item-title">
+                                        <a href="{{ route('account.adverts.show', $advert) }}">{{ $advert->autoBrand->name }} {{ $advert->autoModel->name }}</a>
+                                    </div>
+                                    <div class="adverts-list-item-attributes">
+                                        <div class="adverts-list-item-attribute">
+                                            <i class="fas fa-phone-alt"></i> {{ $advert->phone }} - {{ $advert->name }}
+                                        </div>
+                                        <div class="adverts-list-item-attribute">
+                                            <i class="far fa-eye"></i> {{ $advert->views }}
+                                        </div>
+                                        <div class="adverts-list-item-attribute">
+                                            <i class="fas fa-car"></i> {{ $advert->autoBody->name }}
+                                        </div>
+                                        <div class="adverts-list-item-attribute">
+                                            <i class="far fa-clock"></i> {{ $advert->created_at }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    {{ $advert->mileage }} км. / {{ $advert->year }} г.
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-success" href="{{ route('account.adverts.show', $advert) }}"><i class="far fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{{ route('account.adverts.edit', $advert) }}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{{ route('account.adverts.destroy', $advert) }}"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <hr>
                     @endforeach
                 </div>
             </div>

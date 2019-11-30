@@ -12,14 +12,13 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     <link href="{{ mix('css/app.css', 'build') }}" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'auto.by') }}</a>
+                <a class="header-logo navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'auto.by') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

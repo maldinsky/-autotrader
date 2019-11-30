@@ -6,3 +6,26 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//FileUploader
+@import "fileuploader.min.css";
+
+//Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+header{
+    background: $main-color;
+
+    .navbar-nav .nav-link{
+        color: $second-color;
+    }
+
+    .header-logo{
+        color: $second-color;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}

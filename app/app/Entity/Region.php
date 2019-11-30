@@ -10,4 +10,9 @@ class Region extends Model
     {
         return $this->hasMany('App\Entity\City');
     }
+
+    public function adverts()
+    {
+        return $this->hasMany(Advert::class);
+    }
 }

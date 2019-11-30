@@ -5,3 +5,7 @@
  */
 
 require('./bootstrap');
+
+require('./account');
+
+require('./fileuploader.min');

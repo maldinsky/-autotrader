@@ -15,6 +15,7 @@ use App\Entity\Region;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Adverts\CreateRequest;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdvertController extends Controller
 {
@@ -77,22 +78,82 @@ class AdvertController extends Controller
 
     public function show($id)
     {
+        $advert = Advert::find($id);
 
+        return view('account.adverts.show', compact('advert'));
     }
 
     public function edit($id)
     {
-
         $advert = Advert::find($id);
-        $autoBrands = AutoBrand::all();
         $autoTypes = AutoType::all();
+        $autoBrands = AutoBrand::all();
+        $autoModels = $advert->autoBrand->models;
+        $autoBodies = AutoBody::all();
+        $conditions = Advert::CONDITION_ID;
+        $currencies = Currency::all();
+        $engines = Advert::ENGINE_TYPE;
+        $transmissions = Advert::TRANSMISSION_ID;
+        $drivings = Advert::DRIVING_ID;
+        $colors = AutoColor::all();
+        $interiorColors = AutoInteriorColor::all();
+        $interiorMaterials = AutoInteriorMaterial::all();
+        $exchanges = Advert::EXCHANGE;
+        $regions = Region::all();
+        $cities = $advert->region->cities;
+        $attributeGroups = AutoAttributeGroup::all();
+        $advertImages = $advert->images;
 
-        return view('account.adverts.edit', compact('autoBrands', 'autoTypes', 'advert'));
+        $images = [];
+        foreach($advertImages as $advertImage){
+            $images[] = [
+                'name' => 'Фото',
+                'size' => Storage::size($advertImage->image),
+                'type' => Storage::mimeType($advertImage->image),
+                'file' => Storage::url($advertImage->image)
+            ];
+        }
+
+        return view('account.adverts.edit', compact(
+            'advert',
+            'autoBrands',
+            'autoModels',
+            'autoTypes' ,
+            'autoBodies',
+            'conditions',
+            'currencies',
+            'engines',
+            'transmissions',
+            'drivings',
+            'colors',
+            'interiorColors',
+            'interiorMaterials',
+            'exchanges',
+            'regions',
+            'cities',
+            'attributeGroups',
+            'images')
+        );
     }
 
-    public function update(Request $request, $id)
+    public function update(CreateRequest $request, $id)
     {
+        $advert = Advert::findOrFail($id);
+        $advert->fill($request->except(['attribute_id', 'advert_images']));
 
+        if(!empty($request->attribute_id)){
+            $advert->attributes()->sync($request->attribute_id);
+        }
+
+        if(!empty($request->advert_images)){
+            foreach($request->advert_images as $advert_image){
+                $advert->images()->create(['image' => $advert_image]);
+            }
+        }
+
+        $advert->save();
+
+        return redirect()->route('account.adverts.show', $advert->id);
     }
 
     public function destroy($id)
