@@ -1,11 +1,14 @@
 <?php
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/getModelsByBrand', 'ModelAutoController@handle')->name('getModelsByBrand');
 Route::get('/getCitiesByRegion', 'CityController@handle')->name('getCitiesByRegion');
 Route::post('/advertImage', 'AdvertImageController@index')->name('advertImage');
 
 Auth::routes();
+
+Route::get('adverts/{brand_id?}/{model_id?}', 'Adverts\AdvertController@handler')->name('adverts');
 
 Route::group(['prefix' => 'me', 'as' => 'account.', 'namespace' => 'Account', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');

@@ -19,19 +19,13 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="header-logo navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'auto.by') }}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-main-menu" aria-controls="header-main-menu" aria-expanded="false" aria-label="Меню">
+                    <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="header-main-menu">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
+                            <a class="nav-link" href="{{ route('adverts') }}">Объявления</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
@@ -64,5 +58,8 @@
     <main class="py-4">
         @yield('content')
     </main>
+    <footer>
+
+    </footer>
 </body>
 </html>

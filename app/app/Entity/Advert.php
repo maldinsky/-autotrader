@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Advert extends Model
 {
+    public const STATUS_MODERATION = 0;
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_CLOSED = 2;
+
     protected $fillable = [
         'type', 'brand_id', 'model_id', 'year', 'body_id', 'modification', 'condition_id', 'price', 'currency_id',
         'description', 'engine_type', 'engine_gas', 'engine_hybrid', 'mileage', 'transmission_id', 'driving_id', 'vin',
@@ -82,5 +87,15 @@ class Advert extends Model
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function getName()
+    {
+        return $this->autoBrand->name . ' ' . $this->autoModel->name;
+    }
+
+    public function getMainImage()
+    {
+        return (!empty($this->images[0])) ? Storage::url($this->images[0]->image) : '';
     }
 }

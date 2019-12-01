@@ -6,23 +6,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="brands">
-                    <div class="row">
-                        @foreach($brands as $brand)
-                            <div class="col-md-2">
-                                <div class="brands-item">
-                                    <div class="brands-item-title">
-                                        <a href="{{ route('adverts', $brand->id) }}">{{ $brand->name }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
                 <div class="adverts-related">
                     <div class="adverts-grid-items">
                         <div class="row">
-                            @foreach($relatedAdverts as $advert)
+                            @foreach($adverts as $advert)
                                 <div class="col-md-3">
                                     <div class="adverts-item">
                                         <div class="advert-item-image">
