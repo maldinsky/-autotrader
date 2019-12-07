@@ -19,7 +19,7 @@ class CreateRequest extends FormRequest
             'model_id' => 'required|integer',
             'year' => 'required|integer',
             'body_id' => 'required|integer',
-            'modification' => 'max:64',
+            'modification' => 'string|max:64',
             'condition_id' => 'required|integer',
             'price' => 'required|integer',
             'currency_id' => 'required|integer',

@@ -14,7 +14,7 @@ class CityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'region_id' => 'required|integer|max:11',
+            'region_id' => 'required|integer',
         ];
     }
 }

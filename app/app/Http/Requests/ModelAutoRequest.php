@@ -14,7 +14,7 @@ class ModelAutoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand_id' => 'required|integer|max:11',
+            'brand_id' => 'required|integer',
         ];
     }
 }
