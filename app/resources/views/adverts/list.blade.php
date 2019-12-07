@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('breadcrumbs', '')
+@section('breadcrumbs')
 
 @section('content')
     <div class="container">
@@ -16,7 +16,7 @@
                                             <img class="img-fluid" src="{{ $advert->getMainImage() }}" alt="{{ $advert->getName() }}">
                                         </div>
                                         <div class="advert-item-title">
-                                            {{ $advert->getName() }}
+                                            <a href="{{ route('advert', $advert->id) }}">{{ $advert->getName() }}</a>
                                         </div>
                                         <div class="advert-item-info">
                                             {{ $advert->year }}

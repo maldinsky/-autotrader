@@ -52,3 +52,8 @@ Breadcrumbs::for('adverts', function ($trail) {
     $trail->parent('home');
     $trail->push('Список объявлений', route('adverts'));
 });
+
+Breadcrumbs::for('advert', function ($trail, $advert) {
+    $trail->parent('home');
+    $trail->push('Страница объявления', route('advert', $advert));
+});

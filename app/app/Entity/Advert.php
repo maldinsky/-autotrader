@@ -12,6 +12,8 @@ class Advert extends Model
     public const STATUS_ACTIVE = 1;
     public const STATUS_CLOSED = 2;
 
+    public const FILTER_PARAMS = ['engine_gas'];
+
     protected $fillable = [
         'type', 'brand_id', 'model_id', 'year', 'body_id', 'modification', 'condition_id', 'price', 'currency_id',
         'description', 'engine_type', 'engine_gas', 'engine_hybrid', 'mileage', 'transmission_id', 'driving_id', 'vin',
@@ -97,5 +99,14 @@ class Advert extends Model
     public function getMainImage()
     {
         return (!empty($this->images[0])) ? Storage::url($this->images[0]->image) : '';
+    }
+
+    public function getImages()
+    {
+        $images = [];
+        foreach($this->images as $image){
+            $images[] = Storage::url($image->image);
+        }
+        return $images;
     }
 }
