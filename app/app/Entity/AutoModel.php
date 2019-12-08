@@ -12,4 +12,9 @@ class AutoModel extends Model
     {
         return $this->hasMany(Advert::class);
     }
+
+    public function autoGenerations()
+    {
+        return $this->hasMany(AutoGeneration::class);
+    }
 }

@@ -13,8 +13,8 @@ class AutoBrand extends Model
         return $this->hasMany(Advert::class);
     }
 
-    public function models()
+    public function AutoModels()
     {
-        return $this->hasMany('App\Entity\AutoModel');
+        return $this->hasMany(AutoModel::class);
     }
 }

@@ -4,12 +4,12 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Currency extends Model
+class AutoGeneration extends Model
 {
     public $timestamps = false;
 
-    public function adverts()
+    public function autoModels()
     {
-        return $this->hasMany(Advert::class);
+        return $this->belongsTo(AutoModel::class);
     }
 }

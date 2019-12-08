@@ -7,9 +7,13 @@ use App\Entity\AutoAttributeGroup;
 use App\Entity\AutoBody;
 use App\Entity\AutoBrand;
 use App\Entity\AutoColor;
+use App\Entity\AutoCondition;
+use App\Entity\AutoDriving;
+use App\Entity\AutoEngineType;
+use App\Entity\AutoExchange;
 use App\Entity\AutoInteriorColor;
 use App\Entity\AutoInteriorMaterial;
-use App\Entity\AutoType;
+use App\Entity\AutoTransmission;
 use App\Entity\Currency;
 use App\Entity\Region;
 use App\Http\Controllers\Controller;
@@ -29,23 +33,21 @@ class AdvertController extends Controller
     public function create()
     {
         $autoBrands = AutoBrand::all();
-        $autoTypes = AutoType::all();
         $autoBodies = AutoBody::all();
-        $conditions = Advert::CONDITION_ID;
+        $conditions = AutoCondition::all();
         $currencies = Currency::all();
-        $engines = Advert::ENGINE_TYPE;
-        $transmissions = Advert::TRANSMISSION_ID;
-        $drivings = Advert::DRIVING_ID;
+        $engines = AutoEngineType::all();
+        $transmissions = AutoTransmission::all();
+        $drivings = AutoDriving::all();
         $colors = AutoColor::all();
         $interiorColors = AutoInteriorColor::all();
         $interiorMaterials = AutoInteriorMaterial::all();
-        $exchanges = Advert::EXCHANGE;
+        $exchanges = AutoExchange::all();
         $regions = Region::all();
         $attributeGroups = AutoAttributeGroup::all();
 
         return view('account.adverts.create', compact(
             'autoBrands',
-            'autoTypes' ,
             'autoBodies',
             'conditions',
             'currencies',
@@ -86,19 +88,18 @@ class AdvertController extends Controller
     public function edit($id)
     {
         $advert = Advert::find($id);
-        $autoTypes = AutoType::all();
         $autoBrands = AutoBrand::all();
-        $autoModels = $advert->autoBrand->models;
+        $autoModels = $advert->autoBrand->autoModels;
         $autoBodies = AutoBody::all();
-        $conditions = Advert::CONDITION_ID;
+        $conditions = AutoCondition::all();
         $currencies = Currency::all();
-        $engines = Advert::ENGINE_TYPE;
-        $transmissions = Advert::TRANSMISSION_ID;
-        $drivings = Advert::DRIVING_ID;
+        $engines = AutoEngineType::all();
+        $transmissions = AutoTransmission::all();
+        $drivings = AutoDriving::all();
         $colors = AutoColor::all();
         $interiorColors = AutoInteriorColor::all();
         $interiorMaterials = AutoInteriorMaterial::all();
-        $exchanges = Advert::EXCHANGE;
+        $exchanges = AutoExchange::all();
         $regions = Region::all();
         $cities = $advert->region->cities;
         $attributeGroups = AutoAttributeGroup::all();

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AutoAttributeGroup extends Model
 {
+    public $timestamps = false;
+
     public function autoAttributes()
     {
-        return $this->hasMany('App\Entity\AutoAttribute', 'group_id');
+        return $this->hasMany(AutoAttribute::class, 'group_id');
     }
 }

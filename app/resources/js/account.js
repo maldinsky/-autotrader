@@ -6,11 +6,12 @@ $(document).ready(function () {
             data: 'brand_id=' + $('select[name="brand_id"]').val(),
             dataType: 'json',
             success: function (data) {
-                html = '';
+                html = '<option value="">Выбрать</option>';
                 for (n in data) {
                     html += '<option value="' + data[n].id + '">' + data[n].name + '</option>';
                 }
-                $('select[name="model_id"]').html(html);
+
+                $('select[name="model_id"]').html(html).removeAttr('disabled');
             },
             error: function (xhr, status, error) {
                 alert(xhr.responseText + '|\n' + status + '|\n' + error);
@@ -18,7 +19,24 @@ $(document).ready(function () {
         });
     });
 
-    $('select[name="brand_id"]').change();
+    $('select[name="model_id"]').on('change', function () {
+        $.ajax({
+            url: '/getGenerationByModel',
+            type: 'get',
+            data: 'model_id=' + $('select[name="model_id"]').val(),
+            dataType: 'json',
+            success: function (data) {
+                html = '<option value="">Выбрать</option>';
+                for (n in data) {
+                    html += '<option value="' + data[n].id + '">' + ((data[n].name) ? data[n].name + '(' + data[n].years + ')' : data[n].years) + '</option>';
+                }
+                $('select[name="generation_id"]').html(html).removeAttr('disabled');
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText + '|\n' + status + '|\n' + error);
+            }
+        });
+    });
 
     $('select[name="region_id"]').change(function () {
         $.ajax({

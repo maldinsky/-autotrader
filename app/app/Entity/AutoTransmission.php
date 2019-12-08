@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Currency extends Model
+class AutoTransmission extends Model
 {
     public $timestamps = false;
 

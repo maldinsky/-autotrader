@@ -14,16 +14,16 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|integer',
             'brand_id' => 'required|integer',
             'model_id' => 'required|integer',
             'year' => 'required|integer',
             'body_id' => 'required|integer',
-            'modification' => 'string|max:64',
+            'engine_capacity' => 'required|integer',
+            'modification' => 'string|nullable|max:64',
             'condition_id' => 'required|integer',
             'price' => 'required|integer',
             'currency_id' => 'required|integer',
-            'engine_type' => 'required|integer',
+            'engine_type_id' => 'required|integer',
             'mileage' => 'required|integer',
             'transmission_id' => 'required|integer',
             'driving_id' => 'required|integer',
@@ -31,7 +31,7 @@ class CreateRequest extends FormRequest
             'color_id' => 'required|integer',
             'interior_material_id' => 'required|integer',
             'interior_color_id' => 'required|integer',
-            'exchange' => 'required|integer',
+            'exchange_id' => 'required|integer',
             'region_id' => 'required|integer',
             'city_id' => 'required|integer',
             'name' => 'required|string|max:64',

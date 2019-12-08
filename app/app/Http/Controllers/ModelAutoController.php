@@ -11,6 +11,6 @@ class ModelAutoController extends Controller
     {
         $autoBrand = AutoBrand::find($request->get('brand_id'));
 
-        return $autoBrand->models;
+        return $autoBrand->autoModels;
     }
 }

@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AutoType extends Model
+class AutoEngineType extends Model
 {
+    public $timestamps = false;
+
     public function adverts()
     {
-        return $this->hasMany('App\Entity\Advert');
+        return $this->hasMany(Advert::class);
     }
 }
