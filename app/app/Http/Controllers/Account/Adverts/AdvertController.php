@@ -90,6 +90,7 @@ class AdvertController extends Controller
         $advert = Advert::find($id);
         $autoBrands = AutoBrand::all();
         $autoModels = $advert->autoBrand->autoModels;
+        $autoGenerations = $advert->autoModel->autoGenerations;
         $autoBodies = AutoBody::all();
         $conditions = AutoCondition::all();
         $currencies = Currency::all();
@@ -119,7 +120,7 @@ class AdvertController extends Controller
             'advert',
             'autoBrands',
             'autoModels',
-            'autoTypes' ,
+            'autoGenerations',
             'autoBodies',
             'conditions',
             'currencies',

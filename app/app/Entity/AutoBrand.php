@@ -10,7 +10,7 @@ class AutoBrand extends Model
 
     public function adverts()
     {
-        return $this->hasMany(Advert::class);
+        return $this->hasMany(Advert::class, 'brand_id');
     }
 
     public function AutoModels()

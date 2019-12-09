@@ -10,9 +10,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $relatedAdverts = Advert::all();
+        $relatedAdverts = Advert::active()->get();
 
-        $brands = AutoBrand::all();
+        $brands = AutoBrand::whereHas('adverts', function($query){
+            $query->active();
+        })->withCount(['adverts' => function($query){
+            $query->active();
+        }])->get();
 
         return view('home', compact('relatedAdverts', 'brands'));
     }

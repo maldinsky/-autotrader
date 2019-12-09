@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,6 +37,11 @@ class Advert extends Model
         return $this->belongsTo(AutoModel::class, 'model_id');
     }
 
+    public function autoGeneration()
+    {
+        return $this->belongsTo(AutoGeneration::class,'generation_id');
+    }
+
     public function autoBody()
     {
         return $this->belongsTo(AutoBody::class, 'body_id');
@@ -43,27 +49,32 @@ class Advert extends Model
 
     public function autoCondition()
     {
-        return $this->belongsTo(AutoCondition::class);
+        return $this->belongsTo(AutoCondition::class, 'condition_id');
     }
 
     public function autoEngineType()
     {
-        return $this->belongsTo(AutoEngineType::class);
+        return $this->belongsTo(AutoEngineType::class, 'engine_type_id');
     }
 
     public function autoTransmission()
     {
-        return $this->belongsTo(AutoTransmission::class);
+        return $this->belongsTo(AutoTransmission::class, 'transmission_id');
     }
 
     public function autoDriving()
     {
-        return $this->belongsTo(AutoDriving::class);
+        return $this->belongsTo(AutoDriving::class, 'driving_id');
     }
 
     public function autoExchange()
     {
         return $this->belongsTo(AutoExchange::class);
+    }
+
+    public function autoColor()
+    {
+        return $this->belongsTo(AutoColor::class, 'color_id');
     }
 
     public function attributes()
@@ -81,9 +92,29 @@ class Advert extends Model
         return $this->belongsTo(Region::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function scopeActive(Builder $query)
+    {
+        return $query->where('status', '=',self::STATUS_ACTIVE);
+    }
+
     public function getName()
     {
-        return $this->autoBrand->name . ' ' . $this->autoModel->name;
+        return $this->autoBrand->name . ' ' . $this->autoModel->name . (($this->autoGeneration->name) ?: '');
+    }
+
+    public function getLocation()
+    {
+        return $this->region->name . ', ' . $this->city->name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     public function getMainImage()

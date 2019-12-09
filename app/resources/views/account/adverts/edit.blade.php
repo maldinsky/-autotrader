@@ -16,16 +16,6 @@
             {{ method_field('PUT') }}
             @csrf
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Тип автомобиля</label>
-                <div class="col-sm-6">
-                    <select name="type" class="custom-select" required>
-                        @foreach ($autoTypes as $autoType)
-                            <option value="{{ $autoType->id }}" {{ $advert->type == $autoType->id ? 'selected' : '' }}>{{ $autoType->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Марка автомобиля</label>
                 <div class="col-sm-6">
                     <select name="brand_id" class="custom-select" required>
@@ -48,6 +38,16 @@
                     <small class="text-muted">
                         Нет нужной марки или модели? Обратитесь в техподдержку и мы оперативно ее добавим
                     </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Поколение</label>
+                <div class="col-sm-6">
+                    <select name="generation_id" class="custom-select" required>
+                        @foreach ($autoGenerations as $autoGeneration)
+                            <option value="{{ $autoGeneration->id }}" {{ $advert->generation_id == $autoGeneration->id ? 'selected' : '' }}>{{ ($autoGeneration->name) ? $autoGeneration->name . '(' . $autoGeneration->years . ')' : $autoGeneration->years }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -80,10 +80,10 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Состояние</label>
                 <div class="col-sm-10">
-                    @foreach($conditions as $condition_id => $condition_name)
+                    @foreach($conditions as $condition)
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input name="condition_id" type="radio" id="condition-id-{{ $condition_id }}" class="custom-control-input" value="{{ $condition_id }}" {{ $advert->condition_id == $condition_id ? 'checked' : '' }} required >
-                            <label class="custom-control-label" for="condition-id-{{ $condition_id }}">{{ $condition_name }}</label>
+                            <input name="condition_id" type="radio" id="condition-id-{{ $condition->id }}" class="custom-control-input" value="{{ $condition->id }}" {{ $advert->condition_id == $condition->id ? 'checked' : '' }} required >
+                            <label class="custom-control-label" for="condition-id-{{ $condition->id }}">{{ $condition->name }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -115,9 +115,9 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Тип двигателя</label>
                 <div class="col-sm-6">
-                    <select name="engine_type" class="custom-select" required>
-                        @foreach($engines as $engine_id => $engine_name)
-                            <option value="{{ $engine_id  }}" {{ $advert->engine_type == $engine_id ? 'selected' : '' }}>{{ $engine_name }}</option>
+                    <select name="engine_type_id" class="custom-select" required>
+                        @foreach($engines as $engine)
+                            <option value="{{ $engine->id  }}" {{ $advert->engine_type_id == $engine->id ? 'selected' : '' }}>{{ $engine->name }}</option>
                         @endforeach
                     </select>
                     <div class="custom-control custom-checkbox">
@@ -131,6 +131,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Объем двигателя, см</label>
+                <div class="col-sm-6">
+                    <input name="engine_capacity" type="text" class="form-control" placeholder="Объем двигателя" value="{{ $advert->engine_capacity }}" required>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Пробег, км</label>
                 <div class="col-sm-6">
                     <input name="mileage" type="text" class="form-control" placeholder="Пробег автомобиля" value="{{ $advert->mileage }}" required>
@@ -140,8 +146,8 @@
                 <label class="col-sm-2 col-form-label">Трансмиссия</label>
                 <div class="col-sm-6">
                     <select name="transmission_id" class="custom-select" required>
-                        @foreach($transmissions as $transmission_id => $transmission_name)
-                            <option value="{{ $transmission_id  }}" {{ $advert->transmission_id == $transmission_id ? 'selected' : '' }}>{{ $transmission_name }}</option>
+                        @foreach($transmissions as $transmission)
+                            <option value="{{ $transmission->id  }}" {{ $advert->transmission_id == $transmission->id ? 'selected' : '' }}>{{ $transmission->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -150,8 +156,8 @@
                 <label class="col-sm-2 col-form-label">Тип привода</label>
                 <div class="col-sm-6">
                     <select name="driving_id" class="custom-select" required>
-                        @foreach($drivings as $driving_id => $driving_name)
-                            <option value="{{ $driving_id  }}" {{ $advert->driving_id == $driving_id ? 'selected' : '' }}>{{ $driving_name }}</option>
+                        @foreach($drivings as $driving)
+                            <option value="{{ $driving->id  }}" {{ $advert->driving_id == $driving->id ? 'selected' : '' }}>{{ $driving->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -200,9 +206,9 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Обмен</label>
                 <div class="col-sm-6">
-                    <select name="exchange" class="custom-select" required>
-                        @foreach($exchanges as $exchange_id => $exchange_name)
-                            <option value="{{ $exchange_id }}" {{ $advert->exchange == $exchange_id ? 'selected' : '' }}>{{ $exchange_name }}</option>
+                    <select name="exchange_id" class="custom-select" required>
+                        @foreach($exchanges as $exchange)
+                            <option value="{{ $exchange->id }}" {{ $advert->exchange_id == $exchange->id ? 'selected' : '' }}>{{ $exchange->name }}</option>
                         @endforeach
                     </select>
                 </div>

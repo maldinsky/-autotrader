@@ -16,16 +16,211 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-header{
+header {
     background: $main-color;
 
-    .navbar-nav .nav-link{
+    .navbar-nav .nav-link {
         color: $second-color;
     }
 
-    .header-logo{
+    .header-logo {
         color: $second-color;
         text-transform: uppercase;
         font-weight: 600;
+    }
+}
+
+.block-title {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.block-module {
+    margin: 20px 0;
+}
+
+.adverts-grid-items {
+    .adverts-item {
+        margin-bottom: 25px;
+
+        .advert-item-image {
+            margin-bottom: 10px;
+        }
+
+        .advert-item-title {
+            margin: 10px 0;
+
+            a {
+                font-size: $advert-title-size;
+            }
+        }
+
+        .advert-item-info {
+            margin: 10px 0 0;
+        }
+
+        .advert-item-location {
+            margin: 0 0 10px;
+        }
+
+        .advert-item-price {
+            margin: 10px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    }
+}
+
+.adverts-list-items {
+    .adverts-item {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+
+        .advert-item-title {
+
+            a {
+                font-weight: 600;
+                font-size: $advert-title-size;
+            }
+        }
+
+        .advert-item-location {
+            margin: 0 0 10px;
+        }
+
+        .advert-item-price {
+            margin: 10px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    }
+}
+
+.block-adverts-filter {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 3px 14px 0 rgba(0, 0, 0, .12);
+    margin-bottom: 35px;
+
+    .adverts-filter-item {
+        margin-bottom: 15px;
+    }
+
+}
+
+.advert-page {
+    .advert-header {
+        margin: 0 0 20px;
+    }
+
+    .advert-title {
+        font-weight: 600;
+        font-size: 2em;
+    }
+
+    .advert-price {
+        font-size: 2em;
+        font-weight: 600;
+        text-align: right;
+    }
+
+    .advert-intro-item {
+        color: #777;
+    }
+
+    .advert-main-info {
+        font-size: 1.1em;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+        .advert-main-info-title {
+            color: #777;
+        }
+    }
+
+    .advert-contact-info {
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.12);
+
+        .advert-contact-info-name {
+            font-size: 1.6em;
+        }
+
+        .advert-contact-info-phone {
+            margin: 10px 0;
+
+            a {
+                display: block;
+                padding: 10px;
+                font-size: 1.2em;
+                font-weight: 600;
+                text-align: center;
+                border: 1px solid #d8dadc;
+            }
+        }
+    }
+
+    .advert-images {
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .advert-main-image {
+
+        }
+
+        .advert-thumb-image {
+            position: relative;
+            width: 115px;
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #d8dadc;
+
+            &:before {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                content: '';
+                pointer-events: none;
+                opacity: 1;
+                background-color: rgba(0, 0, 0, .2);
+                transition: opacity .4s;
+            }
+
+            &:hover{
+                &:before{
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    .advert-attributes{
+        margin-bottom: 30px;
+
+        .advert-attribute-groups{
+            .advert-attribute-group{
+                border-bottom: 1px solid #d8dadc;
+            }
+            .advert-attribute-group-title{
+                .btn{
+                    text-align: left;
+                    font-weight: 600;
+                }
+            }
+            .advert-attribute-items{
+                padding: 20px 15px;
+            }
+        }
+    }
+
+    .advert-description{
+        margin-bottom: 30px;
     }
 }
